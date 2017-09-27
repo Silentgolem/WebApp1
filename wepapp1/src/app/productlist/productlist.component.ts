@@ -11,7 +11,17 @@ export class ProductlistComponent {
   showImages: boolean = false;
   imageWidth:number=50;
   imageMargin:number=2;
-  listFilter:string="Cart";
+  _listFilter:string="";
+  get listFilter():string
+  {
+    return this._listFilter;
+  }
+  set listFilter(value:string)
+  {
+    this._listFilter=value;
+    this.filteredProducts=this.listFilter ? this.filterProducts(this.listFilter):this.products;
+  }
+  filteredProducts: IProduct[];
   products: IProduct[] =
   [
     {
@@ -36,7 +46,17 @@ export class ProductlistComponent {
     }
   ]
 
+  constructor()
+  {
+    this.filteredProducts=this.products;
+  }
+
   ToggleImage() {
     this.showImages = !this.showImages;
+  }
+  filterProducts(value:string):IProduct[]
+  {
+    value=value.toLocaleLowerCase();
+    return this.products.filter((product:IProduct)=>product.productName.toLocaleLowerCase().indexOf(value)!= -1);
   }
 }
