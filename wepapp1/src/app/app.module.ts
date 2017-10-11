@@ -7,6 +7,8 @@ import { ProductlistComponent } from './productlist/productlist.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { StarComponent } from './star/star.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],

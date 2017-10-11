@@ -8,6 +8,7 @@ import { IProduct } from './product';
   styleUrls: ['./productlist.component.css']
 })
 export class ProductlistComponent implements OnInit {
+  errorMessage: any;
   pageTitle: string = "Joe's Products";
   showImages: boolean = false;
   imageWidth: number = 50;
@@ -36,7 +37,8 @@ export class ProductlistComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.products = this._productService.getProducts();
-    this.filteredProducts = this.products;
+    this._productService.getProducts().subscribe(products=>{this.products=products 
+      this.filteredProducts = this.products;},
+      error=>this.errorMessage=<any>error);
   }
 }
